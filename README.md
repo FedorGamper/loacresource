@@ -38,4 +38,4 @@ sudo node main.js -c config.json -v
 ```
 
 
-[comment]: <> (scp -r Desktop/LOACP_Ressource pi@192.168.1.194:Desktop)
+
