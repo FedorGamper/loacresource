@@ -1,0 +1,21 @@
+{
+  "name": "loacp_ressource",
+  "version": "1.0.0",
+  "description": "todo",
+  "main": "main.js",
+  "scripts": {
+    "test": "todo"
+  },
+  "repository": {
+    "type": "git",
+    "url": "todo"
+  },
+  "author": "Fedor Gamper",
+  "license": "ISC",
+  "dependencies": {
+    "bleno": "^0.5.0",
+    "loacprotocol": "github:gianlucafrei/LOACProtocol",
+    "noble": "^1.9.1",
+    "yargs": "^13.2.2"
+  }
+}
