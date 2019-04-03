@@ -8,7 +8,7 @@ class AccessCharacteristic extends BlenoCharacteristic {
             uuid: uuid,
             descriptors: [descriptor],
             properties: ['write'],
-            secure: ['write'],
+            //secure: ['write'],
             value: null
         });
         this._updateValueCallback = callback;
