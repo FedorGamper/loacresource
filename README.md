@@ -22,6 +22,7 @@ Install Bleno and the loacProtocol library
 ```
 sudo apt-get install bluetooth bluez libbluetooth-dev libudev-dev  
 npm install bleno  
+npm install yargs 
 npm install gianlucafrei/LOACProtocol  
 ```
 ## Start the application

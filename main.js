@@ -6,6 +6,10 @@ var argv = require('yargs')
   .alias("c", "config").describe("c", "path to the config file")
   .demandOption(["c"]).argv
 
+//for example let onboard led blink
+var RpiLeds = require(rpi-leds);
+var leds = new RpiLeds(); 
+
 // check if file ends with .json, option i for case insensitive
 if(argv.c.match(".json$", "i")){
   var config = require("./" + argv.c);
@@ -57,6 +61,13 @@ function callback(value) {
 
 function accessGranted(description) {
   //todo actually do something
+
+  //blink status light for 5 sec
+  leds.status.blink();
+  var waitTill = new Date(new Date().getTime() + 5 * 1000);
+  while(waitTill > new Date()){}
+  leds.reset()
+
   //todo handle multiple access types
   console.log("You Succsessfully accessed the resource!!! \nAccess Description:"+description);
 }
