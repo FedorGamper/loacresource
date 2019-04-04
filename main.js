@@ -7,7 +7,7 @@ var argv = require('yargs')
   .demandOption(["c"]).argv
 
 //for example let onboard led blink
-var RpiLeds = require(rpi-leds);
+var RpiLeds = require("rpi-leds");
 var leds = new RpiLeds(); 
 
 // check if file ends with .json, option i for case insensitive
