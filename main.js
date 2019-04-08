@@ -7,8 +7,8 @@ var argv = require('yargs')
   .demandOption(["c"]).argv
 
 //for example let onboard led blink
-var RpiLeds = require("rpi-leds");
-var leds = new RpiLeds(); 
+//var RpiLeds = require("rpi-leds");
+//var leds = new RpiLeds(); 
 
 // check if file ends with .json, option i for case insensitive
 if(argv.c.match(".json$", "i")){
@@ -21,7 +21,7 @@ else{
 
 // require protocol, catch if the cyber suite is not supported
 try {
-  var loac = require("loacprotocol")(config.suite);
+  var loac = require("loacprotocol").init(config.suite);
 } catch (err) {
   console.error(err);
   process.exit()
@@ -30,11 +30,11 @@ try {
 var trustStore = config.trustStore;
 var timeDerivationThreshold = config.derivationThreshold;
 var name = config.name;
-var serviceUUID = config.suuid;
+var UUID = config.suuid;
 
 if(argv.v){
   console.log("Resource Name: "+ name+
-  "\nResource Service UUID: " +serviceUUID +
+  "\nResource Service UUID: " +UUID +
   "\nTrusted Public Keys: " +trustStore +
   "\nTime derivation threshold: " + timeDerivationThreshold
   )}
@@ -47,12 +47,12 @@ if(argv.v){
 }
 
 //function called when data are sent to the access request is sent to the resource
-function callback(value) {
+function callback(username, description) {
   if(argv.v){
-    console.log(value);
+    console.log("User :" + username +" wants to:"+description);
   }
   try{
-    resource.checkAccessRequest(value, accessGranted);
+    resource.checkAccessRequest(description, accessGranted);
   }
   catch(err){
     console.error(err);
@@ -63,16 +63,16 @@ function accessGranted(description) {
   //todo actually do something
 
   //blink status light for 5 sec
-  leds.status.blink();
-  var waitTill = new Date(new Date().getTime() + 5 * 1000);
-  while(waitTill > new Date()){}
-  leds.reset()
+//  leds.status.blink();
+//  var waitTill = new Date(new Date().getTime() + 5 * 1000);
+//  while(waitTill > new Date()){}
+//  leds.reset()
 
   //todo handle multiple access types
   console.log("You Succsessfully accessed the resource!!! \nAccess Description:"+description);
 }
 
 //starting the buetooth low energy service
-ble.start(name, serviceUUID, callback, argv.v);
+ble.start(name, UUID, callback, argv.v);
 
 

@@ -1,5 +1,9 @@
 {
-    "suuid": "ffffffff-ffff-ffff-ffff-fffffffffff0",
+    "suuid": {"service":"ffffffff-ffff-ffff-ffff-fffffffffff0",
+            "accReq":"ffffffff-ffff-ffff-ffff-fffffffffff1",
+            "time":"ffffffff-ffff-ffff-ffff-fffffffffff2",
+            "name":"ffffffff-ffff-ffff-ffff-fffffffffff3",
+            "state":"ffffffff-ffff-ffff-ffff-fffffffffff4"},
     "name": "fedors.resource",
     "suite": "p192",
     "derivationThreshold": 10,
