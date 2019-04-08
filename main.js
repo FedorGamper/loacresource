@@ -74,6 +74,6 @@ function accessGranted(description) {
 }
 
 //starting the buetooth low energy service
-ble.start(name, status, loac.utils.dateToUnixTime(new Date()), UUID, callback, argv.v);
+ble.start(name, status, ()=>loac.utils.dateToUnixTime(new Date()), UUID, callback, argv.v);
 
 

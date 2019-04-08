@@ -3,14 +3,16 @@ var AccessCharacteristic = require('./AccessCharacteristics.js');
 var ReadCharacteristics = require("./ReadCharacteristics")
 
 function start(name, status, timeFunc, UUID, callback, v) {
-    var accessDescriptor = new bleno.Descriptor({uuid:"3333", value: "This is the characteristic to sent the access request"});
-    var descriptor = new bleno.Descriptor({uuid:"1233", value: "TODOO Change Me"})
+    var accessDescriptor = new bleno.Descriptor({uuid:"2901", value: "This is the characteristic to sent the access request"});
+    var timeDescriptor = new bleno.Descriptor({uuid:"2901", value: "This is the characteristic to sent the time of the resource"})
+    var nameDescriptor = new bleno.Descriptor({uuid:"2901", value: "This is the characteristic to sent the name of the resource"})
+    var statusDescriptor = new bleno.Descriptor({uuid:"2901", value: "This is the characteristic to sent the status of the resource"})
     // A characteristic can have zero or multiple descriptors
     
     var accessCharacteristics = new AccessCharacteristic(UUID.accReq, accessDescriptor, callback);
-    var timeCharacteristics = new ReadCharacteristics(UUID.time, descriptor, timeFunc );
-    var nameCharacteristics = new ReadCharacteristics(UUID.name, descriptor, name);
-    var statusCharacteristics = new ReadCharacteristics(UUID.state, descriptor, status)
+    var timeCharacteristics = new ReadCharacteristics(UUID.time, timeDescriptor, timeFunc, v );
+    var nameCharacteristics = new ReadCharacteristics(UUID.name, nameDescriptor, name, v);
+    var statusCharacteristics = new ReadCharacteristics(UUID.state, statusDescriptor, status, v)
 
     // A Service can have zero or multiple characteristics
     var accessService = new bleno.PrimaryService({
