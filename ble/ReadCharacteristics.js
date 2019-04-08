@@ -17,8 +17,8 @@ class ReadCharacteristic extends BlenoCharacteristic {
     onReadRequest(offset, callback) {
         var value = this._value;
         if(typeof(value) === "function"){
-            value = value()
-            console.log(value)
+            value = value().toString();
+            console.log(value);
         }
         //value = value.toString('hex');
         callback(this.RESULT_SUCCESS, new Buffer(value));
