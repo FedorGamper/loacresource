@@ -18,7 +18,7 @@ class ReadCharacteristic extends BlenoCharacteristic {
             value = value()
         }
         //value = value.toString('hex');
-        callback(this.RESULT_SUCCESS, this._value);
+        callback(this.RESULT_SUCCESS, new Buffer(this._value));
     }
 }
 
