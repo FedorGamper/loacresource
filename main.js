@@ -31,6 +31,7 @@ var trustStore = config.trustStore;
 var timeDerivationThreshold = config.derivationThreshold;
 var name = config.name;
 var UUID = config.uuid;
+var status = "ready";
 
 if(argv.v){
   console.log("Resource Name: "+ name+
@@ -61,18 +62,18 @@ function callback(username, description) {
 
 function accessGranted(description) {
   //todo actually do something
-
+  status = "busy"
   //blink status light for 5 sec
 //  leds.status.blink();
-//  var waitTill = new Date(new Date().getTime() + 5 * 1000);
-//  while(waitTill > new Date()){}
+  var waitTill = new Date(new Date().getTime() + 20 * 1000);
+  while(waitTill > new Date()){}
 //  leds.reset()
-
+  status = "ready"
   //todo handle multiple access types
   console.log("You Succsessfully accessed the resource!!! \nAccess Description:"+description);
 }
 
 //starting the buetooth low energy service
-ble.start(name, UUID, callback, argv.v);
+ble.start(name, status, loac.utils.dateToUnixTime(new Date()), UUID, callback, argv.v);
 
 

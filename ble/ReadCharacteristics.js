@@ -8,17 +8,20 @@ class ReadCharacteristic extends BlenoCharacteristic {
             uuid: uuid,
             descriptors: [descriptor],
             properties: ['read'],
-            value: value
+            value: null
         });
+        this._value = value;
+        
     }
 
     onReadRequest(offset, callback) {
-        value = this.value;
+        var value = this._value;
         if(typeof(value) === "function"){
             value = value()
+            console.log(value)
         }
         //value = value.toString('hex');
-        callback(this.RESULT_SUCCESS, new Buffer(this._value));
+        callback(this.RESULT_SUCCESS, new Buffer(value));
     }
 }
 
