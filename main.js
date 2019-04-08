@@ -30,11 +30,11 @@ try {
 var trustStore = config.trustStore;
 var timeDerivationThreshold = config.derivationThreshold;
 var name = config.name;
-var UUID = config.suuid;
+var UUID = config.uuid;
 
 if(argv.v){
   console.log("Resource Name: "+ name+
-  "\nResource Service UUID: " +UUID +
+  "\nResource UUID: " +UUID +
   "\nTrusted Public Keys: " +trustStore +
   "\nTime derivation threshold: " + timeDerivationThreshold
   )}

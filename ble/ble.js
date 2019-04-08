@@ -9,7 +9,7 @@ function start(name, UUID, callback, v) {
     var accessCharacteristics = new AccessCharacteristic(UUID.accReq, accessDescriptor, callback);
     var timeCharacteristics = new ReadCharacteristics(UUID.time, descriptor, Date.now );
     var nameCharacteristics = new ReadCharacteristics(UUID.name, descriptor, name);
-    var statusCharacteristics = new ReadCharacteristics(UUID.status, descriptor, "open")
+    var statusCharacteristics = new ReadCharacteristics(UUID.state, descriptor, "open")
 
     // A Service can have zero or multiple characteristics
     var accessService = new bleno.PrimaryService({

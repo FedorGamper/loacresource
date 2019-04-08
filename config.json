@@ -1,5 +1,5 @@
 {
-    "suuid": {"service":"ffffffff-ffff-ffff-ffff-fffffffffff0",
+    "uuid": {"service":"ffffffff-ffff-ffff-ffff-fffffffffff0",
             "accReq":"ffffffff-ffff-ffff-ffff-fffffffffff1",
             "time":"ffffffff-ffff-ffff-ffff-fffffffffff2",
             "name":"ffffffff-ffff-ffff-ffff-fffffffffff3",
