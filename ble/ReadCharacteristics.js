@@ -11,7 +11,7 @@ class ReadCharacteristic extends BlenoCharacteristic {
             value: null
         });
         this._value = value;
-        this.verbose = v;
+        //this.verbose = global.verbose;
         
     }
 
@@ -20,7 +20,7 @@ class ReadCharacteristic extends BlenoCharacteristic {
         if(typeof(value) === "function"){
             value = value().toString();
         }
-        if(this.verbose){
+        if(global.verbose){
             console.log("The value of characteristic:"+ this.uuid +" is: "+value);
         }
         callback(this.RESULT_SUCCESS, new Buffer(value));

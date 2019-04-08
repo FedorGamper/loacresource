@@ -31,9 +31,10 @@ var trustStore = config.trustStore;
 var timeDerivationThreshold = config.derivationThreshold;
 var name = config.name;
 var UUID = config.uuid;
-var status = "ready";
+global.status = "ready";
+global.verbose = argv.v;
 
-if(argv.v){
+if(verbose){
   console.log("Resource Name: "+ name+
   "\nResource UUID: " +UUID +
   "\nTrusted Public Keys: " +trustStore +
