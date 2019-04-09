@@ -2,7 +2,14 @@ var bleno = require('bleno');
 var AccessCharacteristic = require('./AccessCharacteristics.js');
 var ReadCharacteristics = require("./ReadCharacteristics")
 
-function start(name, status, timeFunc, UUID, callback) {
+/**
+ * Starts the BLE advertisement and adds the service and the characteristics
+ * @param {String} name - the name of the resource
+ * @param {function} timeFunc - function that returns the current time, formatted in the correct format for the protocol
+ * @param {object} uuid - hexadecimal 128-bit uuid in following format xxxxxx-xxxx-xxxx-xxxxxxxx for all characteristics and services
+ * @param {function} callback - function that is called when the write request was made
+ */
+function start(name, timeFunc, UUID, callback) {
     // Descriptors that describe the characteristics
     // 2901 = Characteristic User Description
     var accessDescriptor = new bleno.Descriptor({uuid:"2901", value: "This is the characteristic to sends the access request"});
@@ -16,7 +23,7 @@ function start(name, status, timeFunc, UUID, callback) {
     //read characteristics
     var timeCharacteristics = new ReadCharacteristics(UUID.time, timeDescriptor, timeFunc);
     var nameCharacteristics = new ReadCharacteristics(UUID.name, nameDescriptor, name);
-    var statusCharacteristics = new ReadCharacteristics(UUID.state, statusDescriptor, status)
+    var statusCharacteristics = new ReadCharacteristics(UUID.state, statusDescriptor, global.status)
 
     // A Service can have zero or multiple characteristics
     var accessService = new bleno.PrimaryService({

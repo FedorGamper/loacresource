@@ -48,7 +48,11 @@ if(argv.v){
   console.log("Resource instance created")
 }
 
-//function called when data are sent to the access request is sent to the resource
+/**
+ * function called when data are sent to the access request is sent to the resource
+ * @param {String} username - The username of the user that made the access request
+ * @param {String} description - The type of valid request the user made
+ */
 function callback(username, description) {
   if(argv.v){
     console.log("User :" + username +" wants to:"+description);
@@ -61,6 +65,10 @@ function callback(username, description) {
   }
 }
 
+/**
+ * This funktion handels the communication with the resource hardware once the request is validated
+ * @param {String} description - The type of valid request the user made
+ */
 function accessGranted(description) {
   //todo actually do something
   status = "busy"
@@ -75,6 +83,4 @@ function accessGranted(description) {
 }
 
 //starting the buetooth low energy service
-ble.start(name, status, ()=>loac.utils.dateToUnixTime(new Date()), UUID, callback, argv.v);
-
-
+ble.start(name, ()=>loac.utils.dateToUnixTime(new Date()), UUID, callback, argv.v);
