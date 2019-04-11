@@ -50,15 +50,15 @@ if(argv.v){
 
 /**
  * function called when data are sent to the access request is sent to the resource
- * @param {String} username - The username of the user that made the access request
- * @param {String} description - The type of valid request the user made
+ * @param {Buffer} data - The data recived from the write request on the resource
  */
-function callback(username, description) {
+
+function callback(data) {
   if(argv.v){
-    console.log("User :" + username +" wants to:"+description);
+    console.log("BLE data recived: "+data);
   }
   try{
-    resource.checkAccessRequest(description, accessGranted);
+    resource.checkAccessRequest(data, accessGranted(username, description));
   }
   catch(err){
     console.error(err);
@@ -69,7 +69,10 @@ function callback(username, description) {
  * This funktion handels the communication with the resource hardware once the request is validated
  * @param {String} description - The type of valid request the user made
  */
-function accessGranted(description) {
+function accessGranted(username, description) {
+  if(argv.v){
+    console.log("user : " + username+" wants to: "+description)
+  }
   //todo actually do something
   status = "busy"
   //blink status light for 5 sec
@@ -79,7 +82,7 @@ function accessGranted(description) {
 //  leds.reset()
   status = "ready"
   //todo handle multiple access types
-  console.log("You Succsessfully accessed the resource!!! \nAccess Description:"+description);
+  //console.log("You Succsessfully accessed the resource!!! \nAccess Description:"+description);
 }
 
 //starting the buetooth low energy service

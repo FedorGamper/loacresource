@@ -1,14 +1,15 @@
 {
-  "name": "loacp_ressource",
+  "name": "loacp_resource",
   "version": "1.0.0",
-  "description": "todo",
+  "description": "This is an implementation example for the loac protocol on the resource",
   "main": "main.js",
   "scripts": {
-    "test": "todo"
+    "start": "sudo node ./main.js -c config.json -v"
   },
+
   "repository": {
     "type": "git",
-    "url": "todo"
+    "url": "https://github.com/FedorGamper/loacresource"
   },
   "author": "Fedor Gamper",
   "license": "ISC",
