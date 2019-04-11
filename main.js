@@ -55,7 +55,7 @@ if(argv.v){
 
 function callback(data) {
   if(argv.v){
-    console.log("BLE data recived: "+data);
+    console.log("BLE data recived: "+data.toString('hex'));
   }
   try{
     resource.checkAccessRequest(data, accessGranted);
