@@ -15,7 +15,7 @@ if(argv.c.match(".json$", "i")){
   var config = require("./" + argv.c);
 }
 else{
-  console.error("Give config file as a .json file");
+  console.log("Give config file as a .json file");
   process.exit();
 }
 
@@ -23,7 +23,7 @@ else{
 try {
   var loac = require("loacprotocol").init(config.suite);
 } catch (err) {
-  console.error(err);
+  console.log(err);
   process.exit()
 }
 
@@ -58,7 +58,7 @@ function callback(data) {
     console.log("BLE data recived: "+data);
   }
   try{
-    resource.checkAccessRequest(data, accessGranted(username, description));
+    resource.checkAccessRequest(data, accessGranted);
   }
   catch(err){
     console.error(err);
@@ -86,4 +86,4 @@ function accessGranted(username, description) {
 }
 
 //starting the buetooth low energy service
-ble.start(name, ()=>loac.utils.dateToUnixTime(new Date()), UUID, callback, argv.v);
+ble.start(name, ()=>loac.utils.dateToUnixTime(new Date()), UUID, callback);
