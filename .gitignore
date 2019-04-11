@@ -1,3 +1,4 @@
 node_modules/
 generateKeyExamples.js
 package-lock.js
+config.json

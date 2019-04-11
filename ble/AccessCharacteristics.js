@@ -22,7 +22,7 @@ class AccessCharacteristic extends BlenoCharacteristic {
 
     onWriteRequest(data, offset, withoutResponse, callback) {
         this._updateValueCallback(data);
-    
+        callback(this.RESULT_SUCCESS);
     }
 
 }
