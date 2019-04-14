@@ -8,8 +8,8 @@
     "suite": "p192",
     "derivationThreshold": 10,
     "trustStore": {
-        "CA": ["536789e85eb11a3f3964e77ddc282dae71f241ff05d69fedf6652b68d5608624"],
-        "PA": ["b8d1b45591f07733e69a7df53210f21f4ac45441c5d659a8d2b42c75bd710b04"],
+        "PA": ["1fb1b56b26131b191457273ff9566ee7d87c167365c7d961"],
+        "IA": ["494c131df69b29b9a1aff65ea9958ac1ed1d7281d48aab0b"],
         "RO": ""
     }
 }

@@ -16,16 +16,15 @@ class AccessCharacteristic extends BlenoCharacteristic {
             properties: ['write'],
             value: null
         });
-        this._updateValueCallback = callback;
+        this._checkAccessRequestCallback = callback;
 
     }
 
     onWriteRequest(data, offset, withoutResponse, callback) {
-        this._updateValueCallback(data);
-        callback(this.RESULT_SUCCESS);
+        callback(this.RESULT_SUCCESS); // response to the BLE the wirte reqest
+        this._checkAccessRequestCallback(data); //checks the Access Request
     }
-
 }
 
 
-module.exports = AccessCharacteristic;
+module.exports = AccessCharacteristic.constructor();
