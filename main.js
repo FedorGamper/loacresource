@@ -1,21 +1,14 @@
 var ble = require("./ble/ble.js");
-
 var coffeeMaker = require("./coffeeMaker.js");
+
 var argv = require('yargs')
   .usage("Usage: sudo node $0 -c config.json")
   .alias("h", "help").describe("h", "Show Help").help("h")
   .alias("v", "verbose").describe("v", "Show debug information").boolean("v")
-  .alias("c", "config").describe("c", "path to the config file")
+  .config().alias("config","c").describe("c", "Path to the config file").coerce("c",(arg)=>{return require("./"+arg)})
   .demandOption(["c"]).argv
 
-
-// check if file ends with .json, option i for case insensitive
-if (argv.c.match(".json$", "i")) {
-  var config = require("./" + argv.c);
-} else {
-  console.log("Give config file as a .json file");
-  process.exit();
-}
+var config = argv.c
 
 // require protocol, catch if the cyber suite is not supported
 try {
@@ -31,7 +24,6 @@ var name = config.name;
 var UUID = config.uuid;
 global.status = "ready";
 global.verbose = argv.v;
-var coffeeMaker = new coffeeMaker();
 
 if (verbose) {
   console.log("Resource Name: " + name +
@@ -43,6 +35,7 @@ if (verbose) {
 
 // create the resource
 var resource = new loac.Resource(name, trustStore.IA, trustStore.PA, timeDerivationThreshold);
+var coffeeMaker = new coffeeMaker();
 
 if (argv.v) {
   console.log("Resource instance created")
@@ -74,12 +67,18 @@ function accessGranted(username, description) {
   }
 
   switch (description) {
-    case "Make one coffee":
+    case "open":
       coffeeMaker.makeCoffee(1);
       break;
     case "Make two coffees":
       coffeeMaker.makeCoffee(2);
       break;
+    /* 
+    case "get logfile":
+      if(username === trustStore.RO){
+        //todo send the log file back
+      }
+    */
     default:
       throw "Description not supported"
   }
