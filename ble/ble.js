@@ -52,6 +52,9 @@ function start(name, timeFunc, UUID, callback) {
                     console.error(err);
                 }
             });
+        if(verbose){
+          console.log("ble state === power on")
+        }
         } 
         else {
             if(verbose){
