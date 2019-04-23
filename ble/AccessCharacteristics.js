@@ -3,7 +3,7 @@ var bleno = require('bleno');
 var BlenoCharacteristic = bleno.Characteristic;
 
 class AccessCharacteristic extends BlenoCharacteristic {
-    
+
     /**
      * @param {String} uuid - hexadecimal 128-bit uuid in following format xxxxxx-xxxx-xxxx-xxxxxxxx
      * @param {descriptor} descriptor - bleno descriptor for the characteristic
@@ -23,16 +23,14 @@ class AccessCharacteristic extends BlenoCharacteristic {
     onWriteRequest(data, offset, withoutResponse, callback) {
         callback(this.RESULT_SUCCESS); // response to the BLE the wirte reqest
 
-        var i = data.length-1
-        for(; i>0; i--)
-        {
-            if(data[i] != 0)
+        //chop the 0 bytes of the end of the access request
+        var i = data.length - 1
+        for (; i > 0; i--) {
+            if (data[i] != 0)
                 break;
         }
 
-        data = data.slice(0, i+1);
-
-        console.log("Received " + data.length + " bytes");
+        data = data.slice(0, i + 1);
 
         this._checkAccessRequestCallback(data); //checks the Access Request
     }

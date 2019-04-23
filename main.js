@@ -48,12 +48,17 @@ if (argv.v) {
 
 function callback(data) {
   if (argv.v) {
-    console.log("BLE data recived: " + data.toString('hex'));
+    console.log("Data received " + data.length + " bytes");
+    console.log("BLE data recived: /n" + data.toString('hex'));
   }
   try {
+
+    
     resource.checkAccessRequest(data, accessGranted);
+
+
   } catch (err) {
-    console.error(err);
+    console.error(err.message);
   }
 }
 
