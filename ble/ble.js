@@ -35,12 +35,18 @@ function start(name, timeFunc, UUID, callback) {
             statusCharacteristics
         ]
       });
-
+    
+      if(verbose){
+        console.log("services created")
+      }
     //
     // Wait until the BLE radio powers on before attempting to advertise.
     // If you don't have a BLE radio, then it will never power on!
     //
     bleno.on('stateChange', function (state) {
+      if(verbose){
+        console.log("Bleno State = "+state);
+      }
         if (state === 'poweredOn') {
             //
             // We will also advertise the service ID in the advertising packet,
