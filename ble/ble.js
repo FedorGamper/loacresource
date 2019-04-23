@@ -23,7 +23,7 @@ function start(name, timeFunc, UUID, callback) {
     //read characteristics
     var timeCharacteristics = new ReadCharacteristics(UUID.time, timeDescriptor, timeFunc);
     //var nameCharacteristics = new ReadCharacteristics(UUID.name, nameDescriptor, name);
-    var statusCharacteristics = new ReadCharacteristics(UUID.state, statusDescriptor, global.status)
+    var statusCharacteristics = new ReadCharacteristics(UUID.state, statusDescriptor, ()=>global.status)
 
     // A Service can have zero or multiple characteristics
     var accessService = new bleno.PrimaryService({
