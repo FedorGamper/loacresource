@@ -70,7 +70,7 @@ function accessGranted(username, description) {
     case "brew small coffee":
       coffeeMaker.makeCoffee(1);
       break;
-    case "brew large coffees":
+    case "brew large coffee":
       coffeeMaker.makeCoffee(2);
       break;
     /* 
