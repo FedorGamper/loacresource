@@ -95,12 +95,12 @@ function start(name, timeFunc, UUID, callback) {
       
     bleno.on('accept', function(clientAddress){
         if(verbose){
-          console.log(clientAddress)
+          console.log("client connected: " +clientAddress)
         }
         });
     bleno.on('disconnect', function(clientAddress){
         if(verbose){
-            console.log(clientAddress)
+            console.log("client disconected: "+clientAddress)
             }
             });
 
