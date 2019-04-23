@@ -27,4 +27,4 @@ class AccessCharacteristic extends BlenoCharacteristic {
 }
 
 
-module.exports = AccessCharacteristic.constructor();
+module.exports = AccessCharacteristic;
