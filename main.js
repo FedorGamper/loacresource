@@ -67,10 +67,10 @@ function accessGranted(username, description) {
   }
 
   switch (description) {
-    case "open":
+    case "brew small coffee":
       coffeeMaker.makeCoffee(1);
       break;
-    case "Make two coffees":
+    case "brew large coffees":
       coffeeMaker.makeCoffee(2);
       break;
     /* 
