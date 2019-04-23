@@ -6,8 +6,8 @@ class coffeeMaker {
     constructor(){
         this.pinSingle = 17; //gpio pin for the single coffee
         this.pinDouble = 16; //gpio pin for the double coffee
-        this.relaySingle = new gpio(pinSingle, "high"); //set voltage high immediately for low level trigger relay
-        this.relayDouble = new gpio(pinDouble, "high");
+        this.relaySingle = new gpio(this.pinSingle, "high"); //set voltage high immediately for low level trigger relay
+        this.relayDouble = new gpio(this.pinDouble, "high");
 
         if(verbose){
             console.log("Relays are inizialized");
