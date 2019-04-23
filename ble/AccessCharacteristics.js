@@ -26,11 +26,11 @@ class AccessCharacteristic extends BlenoCharacteristic {
         //chop the 0 bytes of the end of the access request
         var i = data.length - 1
         for (; i > 0; i--) {
-            if (data[i] != 0)
+            if (data[i] == 0xff )
                 break;
         }
 
-        data = data.slice(0, i + 1);
+        data = data.slice(0, i);
 
         this._checkAccessRequestCallback(data); //checks the Access Request
     }
