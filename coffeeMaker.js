@@ -41,7 +41,7 @@ class coffeeMaker {
 
         //sleep(1); // click the button one second
         setTimeout(()=>{
-            relay.writeSync(1)
+            this.relay.writeSync(1)
             if(verbose){
                 console.log("GPIO pin "+ this.relay.gpio +" is set to :" + this.relay.readSync());
             }
