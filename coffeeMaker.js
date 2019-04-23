@@ -43,7 +43,7 @@ class coffeeMaker {
         setTimeout(()=>{
             relay.writeSync(1)
             if(verbose){
-                console.log("GPIO pin "+ relay.gpio +" is set to :" + relay.readSync());
+                console.log("GPIO pin "+ this.relay.gpio +" is set to :" + this.relay.readSync());
             }
             }
             , 1000);
