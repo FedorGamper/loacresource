@@ -17,12 +17,12 @@ class coffeeMaker {
     makeCoffee(count) { 
         switch(count){
             case 1: 
-                relay = this.relaySingle; 
+                this.relay = this.relaySingle; 
                 //pin = pinSingle; //only nessesairy for debug informations
                 preparationTime = 75; //the coffee machine has max 1 min 15 sec to make a single coffee
                 break;
             case 2: 
-                relay = this.relayDouble;
+                this.relay = this.relayDouble;
                 //pin = pinDouble; //only nessesairy for debug informations
                 preparationTime = 105; //the coffee machine has max 1 min 45 sec to make a single coffee
                 break;
@@ -34,9 +34,9 @@ class coffeeMaker {
         status = "busy";
 
         //close the cirquit
-        relay.writeSync(0);
+        this.relay.writeSync(0);
         if(verbose){
-            console.log("GPIO pin "+ relay.gpio +" is set to :" + relay.readSync());
+            console.log("GPIO pin "+ this.relay.gpio +" is set to :" + this.relay.readSync());
         }
 
         //sleep(1); // click the button one second
