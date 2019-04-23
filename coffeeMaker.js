@@ -19,12 +19,12 @@ class coffeeMaker {
             case 1: 
                 this.relay = this.relaySingle; 
                 //pin = pinSingle; //only nessesairy for debug informations
-                preparationTime = 75; //the coffee machine has max 1 min 15 sec to make a single coffee
+                this.preparationTime = 75; //the coffee machine has max 1 min 15 sec to make a single coffee
                 break;
             case 2: 
                 this.relay = this.relayDouble;
                 //pin = pinDouble; //only nessesairy for debug informations
-                preparationTime = 105; //the coffee machine has max 1 min 45 sec to make a single coffee
+                this.preparationTime = 105; //the coffee machine has max 1 min 45 sec to make a single coffee
                 break;
             default : 
                 throw "CoffeeMaker: no valid coffee count"; 
@@ -54,15 +54,15 @@ class coffeeMaker {
             if(verbose){
                 console.log("Coffee is done");
             }
-        },preparationTime * 1000);
+        },this.preparationTime * 1000);
         //if(verbose){
         //    console.log("GPIO pin "+ pin +" set to high");
         //}
     }
 
     unexport(){
-        relaySingle.unexport;
-        relayDouble.unexport;
+        this.relaySingle.unexport;
+        this.relayDouble.unexport;
         
         if(verbose){
             console.log("Pins Unexported")
