@@ -86,6 +86,11 @@ function start(name, timeFunc, UUID, callback) {
               console.log("Services added")
           }
         }
+        else{
+          if(verbose){
+            console.log(err)
+          }
+        }
       });
       
     bleno.on('accept', function(clientAddress){
