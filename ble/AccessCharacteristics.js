@@ -49,7 +49,7 @@ class AccessCharacteristic extends BlenoCharacteristic {
             callback(this.RESULT_UNLIKELY_ERROR);
         }
         
-        var processingTime = Date.now(); - onWriteRequestStartTime;
+        var processingTime = Date.now() - onWriteRequestStartTime;
         console.log("Processing time: " + processingTime + "ms");
     }
 }
