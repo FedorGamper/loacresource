@@ -3,12 +3,11 @@
             "accReq":   "4c6f6163-5072-6f74-6f63-6f6c43686130",
             "time":     "4c6f6163-5072-6f74-6f63-6f6c43686131",
             "state":    "4c6f6163-5072-6f74-6f63-6f6c43686132"},
-    "name": "fedors.resource",
+    "name": "fedorspi",
     "suite": "p192",
     "derivationThreshold": 10,
     "trustStore": {
         "PA": ["1fb1b56b26131b191457273ff9566ee7d87c167365c7d961"],
-        "IA": ["494c131df69b29b9a1aff65ea9958ac1ed1d7281d48aab0b"],
-        "RO": "loac.fedor"
+        "IA": ["494c131df69b29b9a1aff65ea9958ac1ed1d7281d48aab0b"]
     }
 }
