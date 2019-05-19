@@ -2,20 +2,20 @@ var ble = require("./ble/ble.js");
 var coffeeMaker = require("./coffeeMaker.js");
 
 var argv = require('yargs')
-  .usage("Usage: sudo node $0 -c config.json")
-  .alias("h", "help").describe("h", "Show Help").help("h")
-  .alias("v", "verbose").describe("v", "Show debug information").boolean("v")
-  .config().alias("config","c").describe("c", "Path to the config file").coerce("c",(arg)=>{return require("./"+arg)})
-  .demandOption(["c"]).argv
+    .usage("Usage: sudo node $0 -c config.json")
+    .alias("h", "help").describe("h", "Show Help").help("h")
+    .alias("v", "verbose").describe("v", "Show debug information").boolean("v")
+    .config().alias("config", "c").describe("c", "Path to the config file").coerce("c", (arg) => { return require("./" + arg) })
+    .demandOption(["c"]).argv
 
 var config = argv.c
 
 // require protocol, catch if the cyber suite is not supported
 try {
-  var loac = require("loacprotocol").init(config.suite);
+    var loac = require("loacprotocol").init(config.suite);
 } catch (err) {
-  console.log(err);
-  process.exit()
+    console.log(err);
+    process.exit()
 }
 
 var trustStore = config.trustStore;
@@ -26,11 +26,11 @@ global.status = "ready";
 global.verbose = argv.v;
 
 if (verbose) {
-  console.log("Resource Name: " + name +
-    "\nResource UUID: " + JSON.stringify(UUID) +
-    "\nTrusted Public Keys: " + JSON.stringify(trustStore) +
-    "\nTime derivation threshold: " + timeDerivationThreshold
-  )
+    console.log("Resource Name: " + name +
+        "\nResource UUID: " + JSON.stringify(UUID) +
+        "\nTrusted Public Keys: " + JSON.stringify(trustStore) +
+        "\nTime derivation threshold: " + timeDerivationThreshold
+    )
 }
 
 // create the resource
@@ -38,7 +38,7 @@ var resource = new loac.Resource(name, trustStore.IA, trustStore.PA, timeDerivat
 var coffeeMaker = new coffeeMaker();
 
 if (argv.v) {
-  console.log("Resource instance created")
+    console.log("Resource instance created")
 }
 
 /**
@@ -47,19 +47,20 @@ if (argv.v) {
  */
 
 function callback(data) {
-  if (argv.v) {
-    console.log("Data received " + data.length + " bytes");
-    console.log("BLE data recived: \n" + data.toString('hex'));
-  }
-  try {
-
-    
-    resource.checkAccessRequest(data, accessGranted);
+    if (argv.v) {
+        console.log("Data received " + data.length + " bytes");
+        console.log("BLE data recived: \n" + data.toString('hex'));
+    }
+    try {
 
 
-  } catch (err) {
-    console.error(err.message);
-  }
+        resource.checkAccessRequest(data, accessGranted);
+
+
+    } catch (err) {
+        console.error(err.message);
+        throw err;
+    }
 }
 
 /**
@@ -67,26 +68,26 @@ function callback(data) {
  * @param {String} description - The type of valid request the user made
  */
 function accessGranted(username, description) {
-  if (argv.v) {
-    console.log("user : " + username + " wants to: " + description)
-  }
+    if (argv.v) {
+        console.log("user : " + username + " wants to: " + description)
+    }
 
-  switch (description) {
-    case "brew small coffee":
-      coffeeMaker.makeCoffee(1);
-      break;
-    case "brew large coffee":
-      coffeeMaker.makeCoffee(2);
-      break;
-    /* 
-    case "get logfile":
-      if(username === trustStore.RO){
-        //todo send the log file back
-      }
-    */
-    default:
-      throw "Description not supported"
-  }
+    switch (description) {
+        case "brew small coffee":
+            coffeeMaker.makeCoffee(1);
+            break;
+        case "brew large coffee":
+            coffeeMaker.makeCoffee(2);
+            break;
+        /* 
+        case "get logfile":
+          if(username === trustStore.RO){
+            //todo send the log file back
+          }
+        */
+        default:
+            throw "Description not supported"
+    }
 }
 
 //starting the buetooth low energy service

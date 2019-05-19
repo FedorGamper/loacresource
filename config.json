@@ -3,7 +3,7 @@
             "accReq":   "4c6f6163-5072-6f74-6f63-6f6c43686130",
             "time":     "4c6f6163-5072-6f74-6f63-6f6c43686131",
             "state":    "4c6f6163-5072-6f74-6f63-6f6c43686132"},
-    "name": "fedors.resource",
+    "name": "fedorspi",
     "suite": "p192",
     "derivationThreshold": 10,
     "trustStore": {

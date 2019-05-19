@@ -21,18 +21,36 @@ class AccessCharacteristic extends BlenoCharacteristic {
     }
 
     onWriteRequest(data, offset, withoutResponse, callback) {
-        callback(this.RESULT_SUCCESS); // response to the BLE the wirte reqest
 
-        //chop the 0 bytes of the end of the access request
-        var i = data.length - 1
-        for (; i > 0; i--) {
-            if (data[i] == 0xff )
-                break;
+        var onWriteRequestStartTime = Date.now();
+
+        try{
+
+            //chop the 0 bytes of the end of the access request
+            var i = data.length - 1
+            for (; i > 0; i--) {
+                if (data[i] == 0xff )
+                    break;
+            }
+            data = data.slice(0, i);
+
+
+            var dataReadTime = Date.now() - onWriteRequestStartTime;
+            console.log("Data read time: " + dataReadTime + " ms");
+
+            this._checkAccessRequestCallback(data); //checks the Access Request
+
+            console.log("Response: RESULT_SUCCESS");
+            callback(this.RESULT_SUCCESS); // response to the BLE the wirte reqest
         }
-
-        data = data.slice(0, i);
-
-        this._checkAccessRequestCallback(data); //checks the Access Request
+        catch(err)
+        {
+            console.log("Response: RESULT_UNLIKELY_ERROR");
+            callback(this.RESULT_UNLIKELY_ERROR);
+        }
+        
+        var processingTime = Date.now() - onWriteRequestStartTime;
+        console.log("Processing time: " + processingTime + "ms");
     }
 }
 
