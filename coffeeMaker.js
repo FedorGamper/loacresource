@@ -5,8 +5,8 @@ class coffeeMaker {
 
     constructor(){
         //initialize the pins that controls the relays
-        this.pinSingle = 17; //gpio pin for the single coffee
-        this.pinDouble = 16; //gpio pin for the double coffee
+        this.pinSingle = 27; //gpio pin for the single coffee
+        this.pinDouble = 22; //gpio pin for the double coffee
         this.relaySingle = new gpio(this.pinSingle, "out"); 
         this.relayDouble = new gpio(this.pinDouble, "out");
 
