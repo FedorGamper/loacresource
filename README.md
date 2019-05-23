@@ -2,8 +2,8 @@
 
 This is just a proof of concept and not a save implementation.
 
+### Code Structure
 
-## Code Structure
 ```
 .
 ├── ble                             Bluetooth Low Energy 
@@ -12,13 +12,15 @@ This is just a proof of concept and not a save implementation.
 │   └── ble.js                      Controller for BLE
 ├── coffeeMaker.js                  Controller for the Hardware
 ├── config.json                     System config file
-├── main.js                         This is the main file of the app
+├── main.js                         
 ├── node_modules
 ├── package-lock.json
 └── package.json
 ```
 
-## To install on a Raspberry pi 3 follow the following steps:
+### Install the application
+
+To install on a Raspberry Pi 3 follow the following steps:
 
 Install Raspbian 
 <https://www.raspberrypi.org/downloads/raspbian/>
@@ -32,9 +34,9 @@ sudo apt-get install -y nodejs
 Install Bleno and the loacProtocol library
 ```
 sudo apt-get install bluetooth bluez libbluetooth-dev libudev-dev  
-npm install
+npm install  
 ```
-## Start the application
+### Start the application
 
 Start the application by running following command in the Terminal:
 
